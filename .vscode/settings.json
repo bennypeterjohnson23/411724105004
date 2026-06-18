@@ -1,0 +1,10 @@
+{
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-26",
+      "path": "C:\\Users\\benny\\OneDrive\\Desktop\\CODES\\.vscode\\oracleJdk-26",
+      "default": true
+    }
+  ],
+  "java.home": "C:\\Users\\benny\\OneDrive\\Desktop\\CODES\\.vscode\\oracleJdk-26"
+}
