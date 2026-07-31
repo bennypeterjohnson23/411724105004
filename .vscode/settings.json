@@ -6,5 +6,6 @@
       "default": true
     }
   ],
-  "java.home": "C:\\Users\\benny\\OneDrive\\Desktop\\CODES\\.vscode\\oracleJdk-26"
+  "java.home": "C:\\Users\\benny\\OneDrive\\Desktop\\CODES\\.vscode\\oracleJdk-26",
+  "java.debug.settings.onBuildFailureProceed": true
 }

@@ -73,23 +73,32 @@ public class bankacc {
             System.out.println("\nChoose: 1) Deposit  2) Withdraw  3) Balance  4) Info  0) Exit");
             System.out.print("> ");
             String choice = sc.nextLine().trim();
-            if (choice.equals("1")) {
-                System.out.print("Amount to deposit: ");
-                double amt = readDouble(sc);
-                account.deposit(amt);
-            } else if (choice.equals("2")) {
-                System.out.print("Amount to withdraw: ");
-                double amt = readDouble(sc);
-                account.withdraw(amt);
-            } else if (choice.equals("3")) {
-                System.out.println("Balance: " + String.format("%.2f", account.getBalance()));
-            } else if (choice.equals("4")) {
-                System.out.println(account.toString());
-            } else if (choice.equals("0")) {
-                System.out.println("Goodbye.");
+            switch (choice) {
+                case "1":
+                    System.out.print("Amount to deposit: ");
+                    double amt = readDouble(sc);
+                    account.deposit(amt);
+                    break;
+                case "2":
+                    System.out.print("Amount to withdraw: ");
+                    double amt2 = readDouble(sc);
+                    account.withdraw(amt2);
+                    break;
+                case "3":
+                    System.out.println("Balance: " + String.format("%.2f", account.getBalance()));
+                    break;
+                case "4":
+                    System.out.println(account.toString());
+                    break;
+                case "0":
+                    System.out.println("Goodbye.");
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+                    break;
+            }
+            if (choice.equals("0")) {
                 break;
-            } else {
-                System.out.println("Invalid choice.");
             }
         }
         sc.close();

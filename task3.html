@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Message Manager</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    #messages {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      min-height: 50px;
+    }
+    .message {
+      background: #f0f0f0;
+      margin: 5px 0;
+      padding: 5px;
+      border-radius: 4px;
+    }
+    #status {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #333;
+    }
+    #charCount {
+      margin-left: 10px;
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Message Manager</h1>
+
+  <input type="text" id="messageInput" placeholder="Type your message here">
+  <span id="charCount">Characters: 0</span>
+  <br><br>
+  <button id="addMessageBtn">Add Message</button>
+  <button id="clearAllBtn">Clear All Messages</button>
+
+  <div id="messages"></div>
+  <p id="status"></p>
+
+  <script>
+    const input = document.getElementById('messageInput');
+    const charCount = document.getElementById('charCount');
+    const addBtn = document.getElementById('addMessageBtn');
+    const clearBtn = document.getElementById('clearAllBtn');
+    const messagesDiv = document.getElementById('messages');
+    const status = document.getElementById('status');
+
+    let messages = [];
+
+    
+    input.addEventListener('input', () => {
+      charCount.textContent = "Characters: " + input.value.length;
+    });
+
+    
+    addBtn.addEventListener('click', () => {
+      const messageText = input.value.trim();
+
+      const messagePromise = new Promise((resolve, reject) => {
+        if (messageText.length >= 3) {
+          resolve(messageText);
+        } else {
+          reject("Message must contain at least 3 characters");
+        }
+      });
+
+      messagePromise
+        .then(msg => {
+          status.textContent = "Message Added Successfully";
+          messages.push(msg);
+          displayMessages();
+          input.value = "";
+          charCount.textContent = "Characters: 0";
+        })
+        .catch(err => {
+          status.textContent = err;
+        });
+    });
+
+    
+    function displayMessages() {
+      messagesDiv.innerHTML = ""; // Clear before re-render
+      messages.forEach((msg, index) => {
+        const msgElement = document.createElement('div');
+        msgElement.className = "message";
+        msgElement.textContent = msg;
+        messagesDiv.appendChild(msgElement);
+
+        
+        setTimeout(() => {
+          if (messages[index] === msg) {
+            messages.splice(index, 1);
+            messagesDiv.removeChild(msgElement);
+            status.textContent = "Message Expired";
+          }
+        }, 10000);
+      });
+    }
+
+    
+    clearBtn.addEventListener('click', () => {
+      messages = [];
+      messagesDiv.innerHTML = "";
+      status.textContent = "All Messages Cleared";
+    });
+  </script>
+</body>
+</html>
