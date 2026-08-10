@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="panel">
+    <h1>Fast notes. Simple app.</h1>
+    <p>Create your account and keep your ideas safe with clean, responsive notes.</p>
+    <div class="actions">
+        <a class="button primary" href="{{ url_for('login') }}">Log in</a>
+        <a class="button secondary" href="{{ url_for('register') }}">Register</a>
+    </div>
+</div>
+{% endblock %}

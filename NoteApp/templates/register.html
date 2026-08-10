@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="panel small-panel">
+    <h2>Create account</h2>
+    <form method="post" class="form-stack">
+        <label>
+            Username
+            <input type="text" name="username" required />
+        </label>
+        <label>
+            Password
+            <input type="password" name="password" required />
+        </label>
+        <button type="submit" class="button primary">Create account</button>
+    </form>
+    <p class="small-note">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
+</div>
+{% endblock %}
